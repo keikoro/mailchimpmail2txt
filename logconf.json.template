@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "loggers": {
+        "": {
+            "handlers": ["regular"],
+            "level": "DEBUG",
+            "propagate": true
+        }
+    },
+    "handlers": {
+        "regular": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+        },
+        "dev": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "modules",
+            "stream": "ext://sys.stdout"
+        },
+        "file": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "formatter": "modules_with_date",
+            "filename": "error.log",
+            "mode": "a",
+            "encoding": "utf8"
+        }
+    },
+    "formatters": {
+        "simple": {
+            "format": "%(message)s"
+        },
+        "modules": {
+            "format": "%(name)s %(funcName)s: %(levelname)s: %(message)s"
+        },
+        "modules_with_date": {
+            "format": "%(asctime)s: %(name)s %(funcName)s: %(levelname)s: %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        }
+    }
+}
